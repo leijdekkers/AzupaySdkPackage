@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		OloAnPmu7pZBgPiYoIhgFkmjiA8=
+		feLyiWAEBCnDvicIKN5oXeTc5tw=
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		WDNZt/0hI7San4lk8rgrCfCjL9E=
+		r0/PC7A5ZJ89jMUm6j8fVWbrlNI=
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -38,11 +38,11 @@
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		OloAnPmu7pZBgPiYoIhgFkmjiA8=
+		feLyiWAEBCnDvicIKN5oXeTc5tw=
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		WDNZt/0hI7San4lk8rgrCfCjL9E=
+		r0/PC7A5ZJ89jMUm6j8fVWbrlNI=
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -50,11 +50,11 @@
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		P6q9/A6gJpsBES+vnsyl/rx5J0k=
+		HN5GVvZuoq59rYf3XBGiB2i3rvA=
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		xHVqCcLY/KxaSPuJAUlS7dc1Ibw=
+		BMOKl2WUQwEKvWgc1UVl/Uf4USM=
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -62,11 +62,11 @@
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64.swiftinterface</key>
 		<data>
-		P6q9/A6gJpsBES+vnsyl/rx5J0k=
+		HN5GVvZuoq59rYf3XBGiB2i3rvA=
 		</data>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		xHVqCcLY/KxaSPuJAUlS7dc1Ibw=
+		BMOKl2WUQwEKvWgc1UVl/Uf4USM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -74,19 +74,19 @@
 		</data>
 		<key>PasscodeConfirmViewController.nib</key>
 		<data>
-		IEIcMXqmkgU3brDNdiW+C1MhitY=
+		Yx4tHAJmNjdWq2OONhRfjulLMXw=
 		</data>
 		<key>PasscodeForgotViewController.nib</key>
 		<data>
-		XGSQfRqs3BBzKzAzfrMvGWIZTZk=
+		18kGDxXV/Bv2ceTFvB+ZoNgQKiQ=
 		</data>
 		<key>PasscodeSetupViewController.nib</key>
 		<data>
-		xQKGtMnkWT4de76iw8SgrvzGMKY=
+		oh4bX7NqgEukn4tl4TGuSq7KjfA=
 		</data>
 		<key>PhoneSetupViewController.nib</key>
 		<data>
-		YOteli2F16omLZ/aFVaQiI0EDKI=
+		igVBB2hAvR5T5N5L7tlojYM1kQk=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -123,14 +123,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IQo6v1dfIN8MW2DipBi8FoME2pfRh1BAH0K5xE4TH7Y=
+			Gu+r3cn5PVJ4jzRCWT1VRmZ24Jse180X+QhdKcy1g28=
 			</data>
 		</dict>
 		<key>Modules/AzupaySdk.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SEIH9Dqr1Nzh46h1qSAvPd5GsB+7CKPWUJrnVwBhc2w=
+			H8j1oTs6YImUOGiBili56UzmvRMSG7FRDVK9d/CN8AU=
 			</data>
 		</dict>
 		<key>Modules/AzupaySdk.swiftmodule/arm64.swiftdoc</key>
@@ -144,14 +144,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IQo6v1dfIN8MW2DipBi8FoME2pfRh1BAH0K5xE4TH7Y=
+			Gu+r3cn5PVJ4jzRCWT1VRmZ24Jse180X+QhdKcy1g28=
 			</data>
 		</dict>
 		<key>Modules/AzupaySdk.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SEIH9Dqr1Nzh46h1qSAvPd5GsB+7CKPWUJrnVwBhc2w=
+			H8j1oTs6YImUOGiBili56UzmvRMSG7FRDVK9d/CN8AU=
 			</data>
 		</dict>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -165,14 +165,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qv974YTF3gTbbmXjrNvj4rVcLVmtagZMwtvGWhulQP4=
+			EhvZGYacHOdsbf4i4nkr7Wsn6igfu4RmHOEExc23TvM=
 			</data>
 		</dict>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ODsM2kBaZkE5pJq+WETZUkWEoSQYME0keL95hZSL4is=
+			UVpftq+brUx/PIDBGqHN2qpRPx5sP1f6o6pgFOFdScY=
 			</data>
 		</dict>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64.swiftdoc</key>
@@ -186,14 +186,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qv974YTF3gTbbmXjrNvj4rVcLVmtagZMwtvGWhulQP4=
+			EhvZGYacHOdsbf4i4nkr7Wsn6igfu4RmHOEExc23TvM=
 			</data>
 		</dict>
 		<key>Modules/AzupaySdk.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ODsM2kBaZkE5pJq+WETZUkWEoSQYME0keL95hZSL4is=
+			UVpftq+brUx/PIDBGqHN2qpRPx5sP1f6o6pgFOFdScY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -207,28 +207,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8j+9Pe71TB0DM+9t4waQNBonHO91/j8DXmOzmtdOcrE=
+			2JQykdQpsEGj4TefHKA8AfbTepZ8C06uuFEncAsNqSE=
 			</data>
 		</dict>
 		<key>PasscodeForgotViewController.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CSNh9H6TeS1fdpTfRhSKMgJIsy3h0nZv+BuoXEn50v8=
+			dPtfvIJFHmh9FuNurVxEuwUWemzdJQaGNR2Dmciy/oA=
 			</data>
 		</dict>
 		<key>PasscodeSetupViewController.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5Zxc0rhA5UE3Kq/K91V0tbQI2kmZ5WxsE5gb8eCk8nU=
+			6wMhfai7maHf31ks/+HuYgk5yu5AjAP5RtYfIAcoakU=
 			</data>
 		</dict>
 		<key>PhoneSetupViewController.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KkRcgdmxCxrhpZ4EUxaiY3pLTvKGnMFGjOtMIUJVgc8=
+			JeU4/WIAzfpXmLCkbF1HC0nvsNxPDFukvFYZCyJhBzo=
 			</data>
 		</dict>
 	</dict>

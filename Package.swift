@@ -13,6 +13,13 @@ let package = Package(
       name: "AzupaySdk",
       targets: ["AzupaySdk"]),
   ],
+    
+    dependencies: [
+           // Here we define our package's external dependencies
+           // and from where they can be fetched:
+        .package(url: "https://github.com/marmelroy/PhoneNumberKit", .upToNextMajor(from: "3.3.3"))
+       ],
+    
   targets: [
     .binaryTarget(
       name: "AzupaySdk",
