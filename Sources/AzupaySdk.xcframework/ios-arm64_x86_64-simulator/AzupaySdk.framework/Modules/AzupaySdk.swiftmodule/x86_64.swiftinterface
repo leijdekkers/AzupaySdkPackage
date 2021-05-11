@@ -1,0 +1,164 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AzupaySdk
+import Alamofire
+@_exported import AzupaySdk
+import Foundation
+import IHDesignableButton
+import PhoneNumberKit
+import RappleProgressHUD
+import RxAlamofire
+import RxSwift
+import SVPinView
+import SimpleCheckbox
+import Swift
+import SwiftMessages
+import UIKit
+extension NSObject {
+  public class var nameOfClass: Swift.String {
+    get
+  }
+  public var nameOfClass: Swift.String {
+    get
+  }
+}
+public struct Pay : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers final public class SDKServicesImpl : AzupaySdk.SDKServices {
+  final public func clear()
+  final public func configure(settings: AzupaySdk.SDKSettings)
+  final public func authenticate(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func registerAccount(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func forgotPin(phoneNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func setPin(phoneNr: Swift.String, pin: Swift.String, code: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func confirmAccount(phoneNr: Swift.String, validationCode: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func paymentRequest(paymentRequest: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
+  final public func pay(paymentRequestId: Swift.String, pan: Swift.String, expiryDate: Swift.String, pin: Swift.String, amount: Swift.Double, accountType: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
+  final public func registerPayId(payID: Swift.String, type: AzupaySdk.PayIdType, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
+  final public func registerBankAccount(bsb: Swift.String, accountNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
+  final public func registerAccountUsingSDK(on viewController: UIKit.UIViewController, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Registration?) -> Swift.Void)
+  @objc deinit
+}
+public struct Payment : Swift.Codable {
+  public let paymentRequestStatus: AzupaySdk.PaymentRequestStatus?
+  public let paymentRequest: AzupaySdk.PaymentRequestClass?
+  public var status: AzupaySdk.Status
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct PaymentRequestClass : Swift.Codable {
+  public let lineItems: [AzupaySdk.LineItem]?
+  public let clientID: Swift.String?, payerNotificationMobile: Swift.String?, payerNotificationEmail: Swift.String?, clientTransactionID: Swift.String?
+  public let payID: Swift.String?
+  public let paymentAmount: Swift.Double?
+  public let paymentExpiryDatetime: Swift.String?, paymentDescription: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct LineItem : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct PaymentRequestStatus : Swift.Codable {
+  public let createdDateTime: Swift.String?
+  public let completedDateTime: Swift.String?
+  public let paymentRequestID: Swift.String?
+  public let status: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum Status {
+  case success
+  case fail
+  case parseFail
+  case noInternet
+  case notAuthenticated
+  case notFound
+  case noData
+  case inputRequired
+  case firstTime
+  case accountExist
+  case unauthorized
+  case error(Swift.String)
+  case none
+}
+public struct PayID : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Registration : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension DesignableButton {
+  @objc override dynamic open func prepareForInterfaceBuilder()
+}
+public enum SDKServiceOutcome : Swift.String {
+  case none
+  case success
+  case fail
+  case processing
+  case unauthorized
+  case noInternetConnection
+  case accountExist
+  case invalidPhoneNumber
+  case invalidPin
+  case reenterPin
+  case invalidCode
+  case invalidPayID
+  case userCancelled
+  case notImplemented
+  case invalidBSB
+  case invalidBankAccountNumber
+  case parseFail
+  case sdkNotInitialised
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum PayIdType {
+  case mobile
+  case email
+  case abn
+  public static func == (a: AzupaySdk.PayIdType, b: AzupaySdk.PayIdType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc public class SDKSettings : ObjectiveC.NSObject {
+  public init(apiKey: Swift.String, baseURL: Swift.String? = nil, organisationLogoUrl: Swift.String? = nil)
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol SDKServices {
+  func configure(settings: AzupaySdk.SDKSettings)
+  func clear()
+  func authenticate(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func registerAccount(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func confirmAccount(phoneNr: Swift.String, validationCode: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func forgotPin(phoneNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func setPin(phoneNr: Swift.String, pin: Swift.String, code: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func registerPayId(payID: Swift.String, type: AzupaySdk.PayIdType, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
+  func registerBankAccount(bsb: Swift.String, accountNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
+  func paymentRequest(paymentRequest: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
+  func pay(paymentRequestId: Swift.String, pan: Swift.String, expiryDate: Swift.String, pin: Swift.String, amount: Swift.Double, accountType: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
+  func registerAccountUsingSDK(on viewController: UIKit.UIViewController, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Registration?) -> Swift.Void)
+}
+@_hasMissingDesignatedInitializers final public class AzupaySDK {
+  public static let instance: AzupaySdk.SDKServicesImpl
+  @objc deinit
+}
+public struct Mandate : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension AzupaySdk.SDKServiceOutcome : Swift.Equatable {}
+extension AzupaySdk.SDKServiceOutcome : Swift.Hashable {}
+extension AzupaySdk.SDKServiceOutcome : Swift.RawRepresentable {}
+extension AzupaySdk.PayIdType : Swift.Equatable {}
+extension AzupaySdk.PayIdType : Swift.Hashable {}

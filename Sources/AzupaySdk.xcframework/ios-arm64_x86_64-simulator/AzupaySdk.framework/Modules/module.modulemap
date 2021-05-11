@@ -1,0 +1,11 @@
+framework module AzupaySdk {
+  umbrella header "AzupaySdk.h"
+
+  export *
+  module * { export * }
+}
+
+module AzupaySdk.Swift {
+    header "AzupaySdk-Swift.h"
+    requires objc
+}
