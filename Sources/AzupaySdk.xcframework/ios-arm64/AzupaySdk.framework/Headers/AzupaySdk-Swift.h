@@ -190,7 +190,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 @import CoreGraphics;
 @import Foundation;
-@import IHDesignableButton;
 @import ObjectiveC;
 @import UIKit;
 #endif
@@ -296,11 +295,6 @@ typedef SWIFT_ENUM(NSInteger, BorderStyle, open) {
 };
 
 
-@interface DesignableButton (SWIFT_EXTENSION(AzupaySdk))
-- (void)prepareForInterfaceBuilder;
-@end
-
-
 
 SWIFT_CLASS("_TtC9AzupaySdk11SDKSettings")
 @interface SDKSettings : NSObject
@@ -402,11 +396,6 @@ typedef SWIFT_ENUM(NSInteger, SVPinViewStyle, open) {
   SVPinViewStyleUnderline = 1,
   SVPinViewStyleBox = 2,
 };
-
-
-
-
-
 
 
 

@@ -4,13 +4,10 @@
 import Alamofire
 @_exported import AzupaySdk
 import Foundation
-import IHDesignableButton
 import PhoneNumberKit
-import RappleProgressHUD
 import RxAlamofire
 import RxSwift
 import Swift
-import SwiftMessages
 import UIKit
 extension NSObject {
   public class var nameOfClass: Swift.String {
@@ -206,9 +203,6 @@ extension SVPinView : UIKit.UITextFieldDelegate {
   @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
   @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField)
   @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
-}
-extension DesignableButton {
-  @objc override dynamic open func prepareForInterfaceBuilder()
 }
 public enum SDKServiceOutcome : Swift.String {
   case none
