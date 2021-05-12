@@ -21,12 +21,12 @@ let package = Package(
     
   targets: [
     .binaryTarget(name: "AzupaySdkBT",path: "./Sources/AzupaySdk.xcframework"),
-  //  .target(name: "PhoneNumberKitBT", dependencies: ["PhoneNumberKit"])
+    .target(name: "PhoneNumberKitBT", dependencies: ["PhoneNumberKit"]),
     
         .target(name: "AzupaySdkTargets",
                        dependencies: [
                            .target(name: "AzupaySdkBT", condition: .when(platforms: .some([.iOS]))),
-//                           .target(name: "PhoneNumberKitBT", condition: .when(platforms: .some([.iOS])))
+                           .target(name: "PhoneNumberKitBT", condition: .when(platforms: .some([.iOS])))
                        ],
                        path: "./Sources/AzupaySdkTargets"
                )
