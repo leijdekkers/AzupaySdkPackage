@@ -90,6 +90,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>PhoneNumberKitBT</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
