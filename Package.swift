@@ -8,17 +8,19 @@ let package = Package(
   platforms: [
     .iOS(.v14)
   ],
+    
   products: [
     .library(
       name: "AzupaySdk",
-      targets: ["AzupaySdk"]),
+      targets: ["AzupaySdk", "Dependencies"]),
   ],
     
+    dependencies: [
+        .package(name: "PhoneNumberKit", url: "https://github.com/marmelroy/PhoneNumberKit.git", from: "3.3.3")
+    ],
+    
   targets: [
-    .binaryTarget(
-      name: "AzupaySdk",
-      path: "./Sources/AzupaySdk.xcframework"
-    )
+    .binaryTarget(name: "AzupaySdk",path: "./Sources/AzupaySdk.xcframework"),
+    .target(name: "AzupaySdk-Dependencies", dependencies: ["PhoneNumberKit"], path: "Dependencies")
   ]
 )
-
