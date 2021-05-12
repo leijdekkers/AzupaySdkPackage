@@ -18,13 +18,13 @@ let package = Package(
     
     dependencies: [
         .package(name: "PhoneNumberKit", url: "https://github.com/marmelroy/PhoneNumberKit.git", from: "3.3.3"),
-        .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.2.0"))
+        .package(name: "RxAlamofire", url: "https://github.com/RxSwiftCommunity/RxAlamofire.git", from: "6.1.0")
     ],
     
   targets: [
     .binaryTarget(name: "AzupaySdkBT",path: "./Sources/AzupaySdk.xcframework"),
     .target(name: "PhoneNumberKitBT", dependencies: ["PhoneNumberKit"]),
-    .target(name: "AlamofireBT", dependencies: ["Alamofire"]),
+    .target(name: "AlamofireBT", dependencies: ["RxAlamofire"]),
     
         .target(name: "AzupaySdkTargets",
                        dependencies: [
