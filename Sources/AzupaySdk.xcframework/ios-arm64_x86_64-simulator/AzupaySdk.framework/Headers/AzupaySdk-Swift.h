@@ -190,8 +190,11 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import CoreGraphics;
+@import Foundation;
 @import IHDesignableButton;
 @import ObjectiveC;
+@import UIKit;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -209,6 +212,91 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma pop_macro("any")
 #endif
 
+enum CheckmarkStyle : NSInteger;
+enum BorderStyle : NSInteger;
+@class NSNumber;
+@class UIColor;
+@class NSCoder;
+@class UIEvent;
+
+/// Checkbox is a simple, animation free checkbox and UISwitch alternative designed
+/// to be performant and easy to implement.
+IB_DESIGNABLE
+SWIFT_CLASS("_TtC9AzupaySdk8Checkbox")
+@interface Checkbox : UIControl
+/// Shape of the center checkmark that appears when <code>Checkbox.isChecked == true</code>.
+/// <em>Default:</em> <code>CheckmarkStyle.square</code>
+@property (nonatomic) enum CheckmarkStyle checkmarkStyle;
+/// Shape of the outside border containing the checkmarks contents.
+/// Used as a visual indication of where the user can tap.
+/// <em>Default:</em> <code>BorderStyle.square</code>
+@property (nonatomic) enum BorderStyle borderStyle;
+/// Width of the borders stroke.
+/// <em>NOTE</em>
+/// Diagonal/rounded lines tend to appear thicker, so border styles
+/// that use these (.circle) have had their border widths halved to compensate
+/// in order appear similar next to other border styles.
+/// <em>Default:</em> <code>2</code>
+@property (nonatomic) IBInspectable CGFloat borderLineWidth;
+/// Size of the center checkmark element.
+/// Drawn as a percentage of the size of the Checkbox’s draw rect.
+/// <em>Default:</em> <code>0.5</code>
+@property (nonatomic) IBInspectable CGFloat checkmarkSize;
+/// The checboxes border color in its unchecked state.
+/// <em>Default:</em> The current tintColor.
+@property (nonatomic, strong) IBInspectable UIColor * _Null_unspecified uncheckedBorderColor;
+/// The checboxes border color in its checked state.
+/// <em>Default:</em> The current tintColor.
+@property (nonatomic, strong) IBInspectable UIColor * _Null_unspecified checkedBorderColor;
+/// <em>Default:</em> The current tintColor.
+@property (nonatomic, strong) IBInspectable UIColor * _Null_unspecified checkmarkColor;
+/// The checkboxes fill color.
+/// <em>Default:</em> <code>UIColoe.Clear</code>
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull checkboxFillColor;
+/// Sets the corner radius for the checkbox border.
+/// <em>Default:</em> <code>0.0</code>
+/// note:
+/// Only applies to checkboxes with <code>BorderStyle.square</code>
+@property (nonatomic) IBInspectable CGFloat borderCornerRadius;
+/// Increases the controls touch area.
+/// Checkbox’s tend to be smaller than regular UIButton elements
+/// and in some cases making them difficult to interact with.
+/// This property helps with that.
+/// <em>Default:</em> <code>5</code>
+@property (nonatomic) IBInspectable CGFloat increasedTouchRadius;
+/// Indicates whether the checkbox is currently in a state of being
+/// checked or not.
+@property (nonatomic) IBInspectable BOOL isChecked;
+/// Determines if tapping the checkbox generates haptic feedback to the user.
+/// <em>Default:</em> <code>true</code>
+@property (nonatomic) IBInspectable BOOL useHapticFeedback;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (void)drawRect:(CGRect)rect;
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent * _Nullable)event SWIFT_WARN_UNUSED_RESULT;
+@end
+
+/// Shape of the center checkmark that appears when <code>Checkbox.isChecked == true</code>.
+typedef SWIFT_ENUM(NSInteger, CheckmarkStyle, open) {
+/// ■
+  CheckmarkStyleSquare = 0,
+/// ●
+  CheckmarkStyleCircle = 1,
+/// ╳
+  CheckmarkStyleCross = 2,
+/// ✓
+  CheckmarkStyleTick = 3,
+};
+
+/// Shape of the outside box containing the checkmarks contents.
+/// Used as a visual indication of where the user can tap.
+typedef SWIFT_ENUM(NSInteger, BorderStyle, open) {
+/// ▢
+  BorderStyleSquare = 0,
+/// ◯
+  BorderStyleCircle = 1,
+};
+
 
 @interface DesignableButton (SWIFT_EXTENSION(AzupaySdk))
 - (void)prepareForInterfaceBuilder;
@@ -222,6 +310,100 @@ SWIFT_CLASS("_TtC9AzupaySdk11SDKSettings")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+@class NSString;
+enum SVPinViewStyle : NSInteger;
+enum SVPinViewDeleteButtonAction : NSInteger;
+@class UIFont;
+
+SWIFT_CLASS("_TtC9AzupaySdk9SVPinView")
+@interface SVPinView : UIView
+@property (nonatomic) IBInspectable NSInteger pinLength;
+@property (nonatomic, copy) IBInspectable NSString * _Nonnull secureCharacter;
+@property (nonatomic) IBInspectable CGFloat interSpace;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull textColor;
+@property (nonatomic) IBInspectable BOOL shouldSecureText;
+@property (nonatomic) IBInspectable NSInteger secureTextDelay;
+@property (nonatomic) IBInspectable BOOL allowsWhitespaces;
+@property (nonatomic, copy) IBInspectable NSString * _Nonnull placeholder;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull borderLineColor;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull activeBorderLineColor;
+@property (nonatomic) IBInspectable CGFloat borderLineThickness;
+@property (nonatomic) IBInspectable CGFloat activeBorderLineThickness;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull fieldBackgroundColor;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull activeFieldBackgroundColor;
+@property (nonatomic) IBInspectable CGFloat fieldCornerRadius;
+@property (nonatomic) IBInspectable CGFloat activeFieldCornerRadius;
+@property (nonatomic) enum SVPinViewStyle style;
+@property (nonatomic) enum SVPinViewDeleteButtonAction deleteButtonAction;
+@property (nonatomic, strong) UIFont * _Nonnull font;
+@property (nonatomic) UIKeyboardType keyboardType;
+@property (nonatomic) UIKeyboardAppearance keyboardAppearance;
+@property (nonatomic) BOOL isContentTypeOneTimeCode;
+@property (nonatomic) BOOL shouldDismissKeyboardOnEmptyFirstField;
+@property (nonatomic, strong) UIView * _Nullable pinInputAccessoryView;
+@property (nonatomic, copy) void (^ _Nullable didFinishCallback)(NSString * _Nonnull);
+@property (nonatomic, copy) void (^ _Nullable didChangeCallback)(NSString * _Nonnull);
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+/// Returns the entered PIN; returns empty string if incomplete
+///
+/// returns:
+/// The entered PIN.
+- (NSString * _Nonnull)getPin SWIFT_WARN_UNUSED_RESULT;
+/// Clears the entered PIN and refreshes the view
+/// \param completionHandler Called after the pin is cleared the view is re-rendered.
+///
+- (void)clearPinWithCompletionHandler:(void (^ _Nullable)(void))completionHandler;
+/// Clears the entered PIN and refreshes the view.
+/// (internally calls the clearPin method; re-declared since the name is more intuitive)
+/// \param completionHandler Called after the pin is cleared the view is re-rendered.
+///
+- (void)refreshViewWithCompletionHandler:(void (^ _Nullable)(void))completionHandler;
+/// Pastes the PIN onto the PinView
+/// \param pin The pin which is to be entered onto the PinView.
+///
+- (void)pastePinWithPin:(NSString * _Nonnull)pin;
+@end
+
+
+@class UITextField;
+
+@interface SVPinView (SWIFT_EXTENSION(AzupaySdk)) <UITextFieldDelegate>
+- (void)textFieldDidBeginEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField;
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class UICollectionView;
+@class NSIndexPath;
+@class UICollectionViewCell;
+@class UICollectionViewLayout;
+
+@interface SVPinView (SWIFT_EXTENSION(AzupaySdk)) <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+- (NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (CGFloat)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UIEdgeInsets)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout insetForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (void)layoutSubviews;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SVPinViewDeleteButtonAction, open) {
+/// Deletes the contents of the current field and moves the cursor to the previous field.
+  SVPinViewDeleteButtonActionDeleteCurrentAndMoveToPrevious = 0,
+/// Simply deletes the content of the current field without moving the cursor.
+/// If there is no value in the field, the cursor moves to the previous field.
+  SVPinViewDeleteButtonActionDeleteCurrent = 1,
+/// Moves the cursor to the previous field and delets the contents.
+/// When any field is focused, its contents are deleted.
+  SVPinViewDeleteButtonActionMoveToPreviousAndDelete = 2,
+};
+
+typedef SWIFT_ENUM(NSInteger, SVPinViewStyle, open) {
+  SVPinViewStyleNone = 0,
+  SVPinViewStyleUnderline = 1,
+  SVPinViewStyleBox = 2,
+};
 
 
 
@@ -434,8 +616,11 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import CoreGraphics;
+@import Foundation;
 @import IHDesignableButton;
 @import ObjectiveC;
+@import UIKit;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -453,6 +638,91 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma pop_macro("any")
 #endif
 
+enum CheckmarkStyle : NSInteger;
+enum BorderStyle : NSInteger;
+@class NSNumber;
+@class UIColor;
+@class NSCoder;
+@class UIEvent;
+
+/// Checkbox is a simple, animation free checkbox and UISwitch alternative designed
+/// to be performant and easy to implement.
+IB_DESIGNABLE
+SWIFT_CLASS("_TtC9AzupaySdk8Checkbox")
+@interface Checkbox : UIControl
+/// Shape of the center checkmark that appears when <code>Checkbox.isChecked == true</code>.
+/// <em>Default:</em> <code>CheckmarkStyle.square</code>
+@property (nonatomic) enum CheckmarkStyle checkmarkStyle;
+/// Shape of the outside border containing the checkmarks contents.
+/// Used as a visual indication of where the user can tap.
+/// <em>Default:</em> <code>BorderStyle.square</code>
+@property (nonatomic) enum BorderStyle borderStyle;
+/// Width of the borders stroke.
+/// <em>NOTE</em>
+/// Diagonal/rounded lines tend to appear thicker, so border styles
+/// that use these (.circle) have had their border widths halved to compensate
+/// in order appear similar next to other border styles.
+/// <em>Default:</em> <code>2</code>
+@property (nonatomic) IBInspectable CGFloat borderLineWidth;
+/// Size of the center checkmark element.
+/// Drawn as a percentage of the size of the Checkbox’s draw rect.
+/// <em>Default:</em> <code>0.5</code>
+@property (nonatomic) IBInspectable CGFloat checkmarkSize;
+/// The checboxes border color in its unchecked state.
+/// <em>Default:</em> The current tintColor.
+@property (nonatomic, strong) IBInspectable UIColor * _Null_unspecified uncheckedBorderColor;
+/// The checboxes border color in its checked state.
+/// <em>Default:</em> The current tintColor.
+@property (nonatomic, strong) IBInspectable UIColor * _Null_unspecified checkedBorderColor;
+/// <em>Default:</em> The current tintColor.
+@property (nonatomic, strong) IBInspectable UIColor * _Null_unspecified checkmarkColor;
+/// The checkboxes fill color.
+/// <em>Default:</em> <code>UIColoe.Clear</code>
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull checkboxFillColor;
+/// Sets the corner radius for the checkbox border.
+/// <em>Default:</em> <code>0.0</code>
+/// note:
+/// Only applies to checkboxes with <code>BorderStyle.square</code>
+@property (nonatomic) IBInspectable CGFloat borderCornerRadius;
+/// Increases the controls touch area.
+/// Checkbox’s tend to be smaller than regular UIButton elements
+/// and in some cases making them difficult to interact with.
+/// This property helps with that.
+/// <em>Default:</em> <code>5</code>
+@property (nonatomic) IBInspectable CGFloat increasedTouchRadius;
+/// Indicates whether the checkbox is currently in a state of being
+/// checked or not.
+@property (nonatomic) IBInspectable BOOL isChecked;
+/// Determines if tapping the checkbox generates haptic feedback to the user.
+/// <em>Default:</em> <code>true</code>
+@property (nonatomic) IBInspectable BOOL useHapticFeedback;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (void)drawRect:(CGRect)rect;
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent * _Nullable)event SWIFT_WARN_UNUSED_RESULT;
+@end
+
+/// Shape of the center checkmark that appears when <code>Checkbox.isChecked == true</code>.
+typedef SWIFT_ENUM(NSInteger, CheckmarkStyle, open) {
+/// ■
+  CheckmarkStyleSquare = 0,
+/// ●
+  CheckmarkStyleCircle = 1,
+/// ╳
+  CheckmarkStyleCross = 2,
+/// ✓
+  CheckmarkStyleTick = 3,
+};
+
+/// Shape of the outside box containing the checkmarks contents.
+/// Used as a visual indication of where the user can tap.
+typedef SWIFT_ENUM(NSInteger, BorderStyle, open) {
+/// ▢
+  BorderStyleSquare = 0,
+/// ◯
+  BorderStyleCircle = 1,
+};
+
 
 @interface DesignableButton (SWIFT_EXTENSION(AzupaySdk))
 - (void)prepareForInterfaceBuilder;
@@ -466,6 +736,100 @@ SWIFT_CLASS("_TtC9AzupaySdk11SDKSettings")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+@class NSString;
+enum SVPinViewStyle : NSInteger;
+enum SVPinViewDeleteButtonAction : NSInteger;
+@class UIFont;
+
+SWIFT_CLASS("_TtC9AzupaySdk9SVPinView")
+@interface SVPinView : UIView
+@property (nonatomic) IBInspectable NSInteger pinLength;
+@property (nonatomic, copy) IBInspectable NSString * _Nonnull secureCharacter;
+@property (nonatomic) IBInspectable CGFloat interSpace;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull textColor;
+@property (nonatomic) IBInspectable BOOL shouldSecureText;
+@property (nonatomic) IBInspectable NSInteger secureTextDelay;
+@property (nonatomic) IBInspectable BOOL allowsWhitespaces;
+@property (nonatomic, copy) IBInspectable NSString * _Nonnull placeholder;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull borderLineColor;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull activeBorderLineColor;
+@property (nonatomic) IBInspectable CGFloat borderLineThickness;
+@property (nonatomic) IBInspectable CGFloat activeBorderLineThickness;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull fieldBackgroundColor;
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull activeFieldBackgroundColor;
+@property (nonatomic) IBInspectable CGFloat fieldCornerRadius;
+@property (nonatomic) IBInspectable CGFloat activeFieldCornerRadius;
+@property (nonatomic) enum SVPinViewStyle style;
+@property (nonatomic) enum SVPinViewDeleteButtonAction deleteButtonAction;
+@property (nonatomic, strong) UIFont * _Nonnull font;
+@property (nonatomic) UIKeyboardType keyboardType;
+@property (nonatomic) UIKeyboardAppearance keyboardAppearance;
+@property (nonatomic) BOOL isContentTypeOneTimeCode;
+@property (nonatomic) BOOL shouldDismissKeyboardOnEmptyFirstField;
+@property (nonatomic, strong) UIView * _Nullable pinInputAccessoryView;
+@property (nonatomic, copy) void (^ _Nullable didFinishCallback)(NSString * _Nonnull);
+@property (nonatomic, copy) void (^ _Nullable didChangeCallback)(NSString * _Nonnull);
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+/// Returns the entered PIN; returns empty string if incomplete
+///
+/// returns:
+/// The entered PIN.
+- (NSString * _Nonnull)getPin SWIFT_WARN_UNUSED_RESULT;
+/// Clears the entered PIN and refreshes the view
+/// \param completionHandler Called after the pin is cleared the view is re-rendered.
+///
+- (void)clearPinWithCompletionHandler:(void (^ _Nullable)(void))completionHandler;
+/// Clears the entered PIN and refreshes the view.
+/// (internally calls the clearPin method; re-declared since the name is more intuitive)
+/// \param completionHandler Called after the pin is cleared the view is re-rendered.
+///
+- (void)refreshViewWithCompletionHandler:(void (^ _Nullable)(void))completionHandler;
+/// Pastes the PIN onto the PinView
+/// \param pin The pin which is to be entered onto the PinView.
+///
+- (void)pastePinWithPin:(NSString * _Nonnull)pin;
+@end
+
+
+@class UITextField;
+
+@interface SVPinView (SWIFT_EXTENSION(AzupaySdk)) <UITextFieldDelegate>
+- (void)textFieldDidBeginEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField;
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class UICollectionView;
+@class NSIndexPath;
+@class UICollectionViewCell;
+@class UICollectionViewLayout;
+
+@interface SVPinView (SWIFT_EXTENSION(AzupaySdk)) <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+- (NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (CGFloat)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UIEdgeInsets)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout insetForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (void)layoutSubviews;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SVPinViewDeleteButtonAction, open) {
+/// Deletes the contents of the current field and moves the cursor to the previous field.
+  SVPinViewDeleteButtonActionDeleteCurrentAndMoveToPrevious = 0,
+/// Simply deletes the content of the current field without moving the cursor.
+/// If there is no value in the field, the cursor moves to the previous field.
+  SVPinViewDeleteButtonActionDeleteCurrent = 1,
+/// Moves the cursor to the previous field and delets the contents.
+/// When any field is focused, its contents are deleted.
+  SVPinViewDeleteButtonActionMoveToPreviousAndDelete = 2,
+};
+
+typedef SWIFT_ENUM(NSInteger, SVPinViewStyle, open) {
+  SVPinViewStyleNone = 0,
+  SVPinViewStyleUnderline = 1,
+  SVPinViewStyleBox = 2,
+};
 
 
 
