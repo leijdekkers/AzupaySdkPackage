@@ -12,7 +12,7 @@ let package = Package(
   products: [
     .library(
       name: "AzupaySdk",
-      targets: ["AzupaySdk", "Dependencies"]),
+      targets: ["AzupaySdkTargets"]),
   ],
     
     dependencies: [
@@ -20,7 +20,15 @@ let package = Package(
     ],
     
   targets: [
-    .binaryTarget(name: "AzupaySdk",path: "./Sources/AzupaySdk.xcframework"),
-    .target(name: "AzupaySdk-Dependencies", dependencies: ["PhoneNumberKit"], path: "Dependencies")
+    .binaryTarget(name: "AzupaySdkBT",path: "./Sources/AzupaySdk.xcframework"),
+  //  .target(name: "PhoneNumberKitBT", dependencies: ["PhoneNumberKit"])
+    
+        .target(name: "AzupaySdkTargets",
+                       dependencies: [
+                           .target(name: "AzupaySdkBT", condition: .when(platforms: .some([.iOS]))),
+//                           .target(name: "PhoneNumberKitBT", condition: .when(platforms: .some([.iOS])))
+                       ],
+                       path: "./Sources/AzupaySdkTargets"
+               )
   ]
 )
