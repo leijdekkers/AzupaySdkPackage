@@ -1,0 +1,284 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AzupaySdk
+import Alamofire
+@_exported import AzupaySdk
+import Combine
+import Foundation
+import PhoneNumberKit
+import Swift
+import UIKit
+extension NSObject {
+  public class var nameOfClass: Swift.String {
+    get
+  }
+  public var nameOfClass: Swift.String {
+    get
+  }
+}
+public struct Pay : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers final public class SDKServicesImpl : AzupaySdk.SDKServices {
+  final public func clear()
+  final public func configure(settings: AzupaySdk.SDKSettings)
+  final public func authenticate(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func registerAccount(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func forgotPin(phoneNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func setPin(phoneNr: Swift.String, pin: Swift.String, code: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func confirmAccount(phoneNr: Swift.String, validationCode: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  final public func paymentRequest(paymentRequest: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
+  final public func pay(paymentRequestId: Swift.String, pan: Swift.String, expiryDate: Swift.String, pin: Swift.String, amount: Swift.Double, accountType: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
+  final public func registerPayId(payID: Swift.String, type: AzupaySdk.PayIdType, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
+  final public func registerBankAccount(bsb: Swift.String, accountNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
+  final public func registerAccountUsingSDK(on viewController: UIKit.UIViewController, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Registration?) -> Swift.Void)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @IBDesignable open class Checkbox : UIKit.UIControl {
+  @objc public enum CheckmarkStyle : Swift.Int {
+    case square
+    case circle
+    case cross
+    case tick
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public enum BorderStyle : Swift.Int {
+    case square
+    case circle
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc dynamic public var checkmarkStyle: AzupaySdk.Checkbox.CheckmarkStyle
+  @objc dynamic public var borderStyle: AzupaySdk.Checkbox.BorderStyle
+  @objc @IBInspectable public var borderLineWidth: CoreGraphics.CGFloat
+  @objc @IBInspectable public var checkmarkSize: CoreGraphics.CGFloat
+  @objc @IBInspectable public var uncheckedBorderColor: UIKit.UIColor!
+  @objc @IBInspectable public var checkedBorderColor: UIKit.UIColor!
+  @objc @IBInspectable public var checkmarkColor: UIKit.UIColor!
+  @available(swift, obsoleted: 4.1, renamed: "checkboxFillColor", message: "Defaults to a clear color")
+  public var checkboxBackgroundColor: UIKit.UIColor!
+  @objc @IBInspectable public var checkboxFillColor: UIKit.UIColor
+  @objc @IBInspectable public var borderCornerRadius: CoreGraphics.CGFloat
+  @objc @IBInspectable public var increasedTouchRadius: CoreGraphics.CGFloat
+  public var valueChanged: ((Swift.Bool) -> Swift.Void)?
+  @objc @IBInspectable public var isChecked: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @IBInspectable public var useHapticFeedback: Swift.Bool
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public func draw(_ rect: CoreGraphics.CGRect)
+  @objc override dynamic public func point(inside point: CoreGraphics.CGPoint, with event: UIKit.UIEvent?) -> Swift.Bool
+  @objc deinit
+}
+public struct Payment : Swift.Codable {
+  public let paymentRequestStatus: AzupaySdk.PaymentRequestStatus?
+  public let paymentRequest: AzupaySdk.PaymentRequestClass?
+  public var status: AzupaySdk.Status
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct PaymentRequestClass : Swift.Codable {
+  public let lineItems: [AzupaySdk.LineItem]?
+  public let clientID: Swift.String?, payerNotificationMobile: Swift.String?, payerNotificationEmail: Swift.String?, clientTransactionID: Swift.String?
+  public let payID: Swift.String?
+  public let paymentAmount: Swift.Double?
+  public let paymentExpiryDatetime: Swift.String?, paymentDescription: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct LineItem : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct PaymentRequestStatus : Swift.Codable {
+  public let createdDateTime: Swift.String?
+  public let completedDateTime: Swift.String?
+  public let paymentRequestID: Swift.String?
+  public let status: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum Status {
+  case success
+  case fail
+  case parseFail
+  case noInternet
+  case notAuthenticated
+  case notFound
+  case noData
+  case inputRequired
+  case firstTime
+  case accountExist
+  case unauthorized
+  case error(Swift.String)
+  case none
+}
+public struct PayID : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Registration : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@objc public enum SVPinViewStyle : Swift.Int {
+  case none = 0
+  case underline
+  case box
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum SVPinViewDeleteButtonAction : Swift.Int {
+  case deleteCurrentAndMoveToPrevious = 0
+  case deleteCurrent
+  case moveToPreviousAndDelete
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class SVPinView : UIKit.UIView {
+  @objc @IBInspectable public var pinLength: Swift.Int
+  @objc @IBInspectable public var secureCharacter: Swift.String
+  @objc @IBInspectable public var interSpace: CoreGraphics.CGFloat
+  @objc @IBInspectable public var textColor: UIKit.UIColor
+  @objc @IBInspectable public var shouldSecureText: Swift.Bool
+  @objc @IBInspectable public var secureTextDelay: Swift.Int
+  @objc @IBInspectable public var allowsWhitespaces: Swift.Bool
+  @objc @IBInspectable public var placeholder: Swift.String
+  @objc @IBInspectable public var borderLineColor: UIKit.UIColor
+  @objc @IBInspectable public var activeBorderLineColor: UIKit.UIColor
+  @objc @IBInspectable public var borderLineThickness: CoreGraphics.CGFloat
+  @objc @IBInspectable public var activeBorderLineThickness: CoreGraphics.CGFloat
+  @objc @IBInspectable public var fieldBackgroundColor: UIKit.UIColor
+  @objc @IBInspectable public var activeFieldBackgroundColor: UIKit.UIColor
+  @objc @IBInspectable public var fieldCornerRadius: CoreGraphics.CGFloat
+  @objc @IBInspectable public var activeFieldCornerRadius: CoreGraphics.CGFloat
+  @objc public var style: AzupaySdk.SVPinViewStyle
+  @objc public var deleteButtonAction: AzupaySdk.SVPinViewDeleteButtonAction
+  @objc public var font: UIKit.UIFont
+  @objc public var keyboardType: UIKit.UIKeyboardType
+  @objc public var keyboardAppearance: UIKit.UIKeyboardAppearance
+  public var becomeFirstResponderAtIndex: Swift.Int?
+  @objc public var isContentTypeOneTimeCode: Swift.Bool
+  @objc public var shouldDismissKeyboardOnEmptyFirstField: Swift.Bool
+  @objc public var pinInputAccessoryView: UIKit.UIView? {
+    @objc get
+    @objc set
+  }
+  @objc public var didFinishCallback: ((Swift.String) -> Swift.Void)?
+  @objc public var didChangeCallback: ((Swift.String) -> Swift.Void)?
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc public func getPin() -> Swift.String
+  @objc public func clearPin(completionHandler: (() -> Swift.Void)? = nil)
+  @objc public func refreshView(completionHandler: (() -> Swift.Void)? = nil)
+  @objc public func pastePin(pin: Swift.String)
+  @objc deinit
+}
+extension SVPinView : UIKit.UICollectionViewDataSource, UIKit.UICollectionViewDelegate, UIKit.UICollectionViewDelegateFlowLayout {
+  @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreGraphics.CGSize
+  @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Swift.Int) -> CoreGraphics.CGFloat
+  @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, insetForSectionAt section: Swift.Int) -> UIKit.UIEdgeInsets
+  @objc override dynamic public func layoutSubviews()
+}
+extension SVPinView : UIKit.UITextFieldDelegate {
+  @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
+  @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField)
+  @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+}
+public enum SDKServiceOutcome : Swift.String {
+  case none
+  case success
+  case fail
+  case processing
+  case unauthorized
+  case noInternetConnection
+  case accountExist
+  case invalidPhoneNumber
+  case invalidPin
+  case reenterPin
+  case invalidCode
+  case invalidPayID
+  case userCancelled
+  case notImplemented
+  case invalidBSB
+  case invalidBankAccountNumber
+  case parseFail
+  case sdkNotInitialised
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum PayIdType {
+  case mobile
+  case email
+  case abn
+  public static func == (a: AzupaySdk.PayIdType, b: AzupaySdk.PayIdType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc public class SDKSettings : ObjectiveC.NSObject {
+  public init(apiKey: Swift.String, baseURL: Swift.String? = nil, organisationLogoUrl: Swift.String? = nil)
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol SDKServices {
+  func configure(settings: AzupaySdk.SDKSettings)
+  func clear()
+  func authenticate(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func registerAccount(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func confirmAccount(phoneNr: Swift.String, validationCode: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func forgotPin(phoneNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func setPin(phoneNr: Swift.String, pin: Swift.String, code: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
+  func registerPayId(payID: Swift.String, type: AzupaySdk.PayIdType, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
+  func registerBankAccount(bsb: Swift.String, accountNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
+  func paymentRequest(paymentRequest: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
+  func pay(paymentRequestId: Swift.String, pan: Swift.String, expiryDate: Swift.String, pin: Swift.String, amount: Swift.Double, accountType: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
+  func registerAccountUsingSDK(on viewController: UIKit.UIViewController, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Registration?) -> Swift.Void)
+}
+@_hasMissingDesignatedInitializers final public class AzupaySDK {
+  public static let instance: AzupaySdk.SDKServicesImpl
+  @objc deinit
+}
+public struct Mandate : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension AzupaySdk.Checkbox.CheckmarkStyle : Swift.Equatable {}
+extension AzupaySdk.Checkbox.CheckmarkStyle : Swift.Hashable {}
+extension AzupaySdk.Checkbox.CheckmarkStyle : Swift.RawRepresentable {}
+extension AzupaySdk.Checkbox.BorderStyle : Swift.Equatable {}
+extension AzupaySdk.Checkbox.BorderStyle : Swift.Hashable {}
+extension AzupaySdk.Checkbox.BorderStyle : Swift.RawRepresentable {}
+extension AzupaySdk.SVPinViewStyle : Swift.Equatable {}
+extension AzupaySdk.SVPinViewStyle : Swift.Hashable {}
+extension AzupaySdk.SVPinViewStyle : Swift.RawRepresentable {}
+extension AzupaySdk.SVPinViewDeleteButtonAction : Swift.Equatable {}
+extension AzupaySdk.SVPinViewDeleteButtonAction : Swift.Hashable {}
+extension AzupaySdk.SVPinViewDeleteButtonAction : Swift.RawRepresentable {}
+extension AzupaySdk.SDKServiceOutcome : Swift.Equatable {}
+extension AzupaySdk.SDKServiceOutcome : Swift.Hashable {}
+extension AzupaySdk.SDKServiceOutcome : Swift.RawRepresentable {}
+extension AzupaySdk.PayIdType : Swift.Equatable {}
+extension AzupaySdk.PayIdType : Swift.Hashable {}
