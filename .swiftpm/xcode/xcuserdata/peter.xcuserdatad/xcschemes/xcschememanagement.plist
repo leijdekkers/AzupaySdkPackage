@@ -163,6 +163,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>RxAlamofireBT</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>RxSwiftBT</key>
 		<dict>
 			<key>primary</key>
