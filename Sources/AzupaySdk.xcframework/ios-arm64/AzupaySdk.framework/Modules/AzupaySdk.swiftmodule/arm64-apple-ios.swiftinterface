@@ -3,7 +3,6 @@
 // swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AzupaySdk
 import Alamofire
 @_exported import AzupaySdk
-import Combine
 import Foundation
 import PhoneNumberKit
 import Swift
@@ -117,10 +116,12 @@ public enum Status {
   case notFound
   case noData
   case inputRequired
+  case invalidParameter
   case firstTime
   case accountExist
   case unauthorized
-  case error(Swift.String)
+  case paymentFail
+  case error(Swift.String?)
   case none
 }
 public struct PayID : Swift.Codable {
