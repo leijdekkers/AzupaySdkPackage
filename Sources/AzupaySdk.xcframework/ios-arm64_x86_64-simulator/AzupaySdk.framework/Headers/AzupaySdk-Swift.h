@@ -300,8 +300,7 @@ typedef SWIFT_ENUM(NSInteger, BorderStyle, open) {
 
 SWIFT_CLASS("_TtC9AzupaySdk11SDKSettings")
 @interface SDKSettings : NSObject
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 @class NSString;
@@ -715,8 +714,7 @@ typedef SWIFT_ENUM(NSInteger, BorderStyle, open) {
 
 SWIFT_CLASS("_TtC9AzupaySdk11SDKSettings")
 @interface SDKSettings : NSObject
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 @class NSString;

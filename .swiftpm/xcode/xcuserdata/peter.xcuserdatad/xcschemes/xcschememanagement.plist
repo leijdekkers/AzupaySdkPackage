@@ -148,6 +148,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AlamofireImageBT</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AzupaySdk</key>
 		<dict>
 			<key>primary</key>

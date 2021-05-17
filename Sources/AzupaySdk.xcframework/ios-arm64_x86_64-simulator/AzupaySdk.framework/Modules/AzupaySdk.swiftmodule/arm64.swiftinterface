@@ -2,11 +2,14 @@
 // swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
 // swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AzupaySdk
 import Alamofire
+import AlamofireImage
 @_exported import AzupaySdk
 import Foundation
 import PhoneNumberKit
 import Swift
 import UIKit
+public struct LogoImage {
+}
 extension NSObject {
   public class var nameOfClass: Swift.String {
     get
@@ -204,6 +207,20 @@ extension SVPinView : UIKit.UITextFieldDelegate {
   @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField)
   @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
 }
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SDKSettings : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+public class SdkBuilder {
+  public init(apiKey: Swift.String)
+  public func apiKey(_ apiKey: Swift.String) -> AzupaySdk.SdkBuilder
+  public func baseURL(_ baseURL: Swift.String) -> AzupaySdk.SdkBuilder
+  public func logoUrl(_ logoUrl: Swift.String) -> AzupaySdk.SdkBuilder
+  public func buttonColor(_ buttonColor: UIKit.UIColor) -> AzupaySdk.SdkBuilder
+  public func headers(_ headers: [Swift.String : Swift.String]) -> AzupaySdk.SdkBuilder
+  public func build() -> AzupaySdk.SDKSettings
+  @objc deinit
+}
 public enum SDKServiceOutcome : Swift.String {
   case none
   case success
@@ -238,11 +255,6 @@ public enum PayIdType {
   public var hashValue: Swift.Int {
     get
   }
-}
-@objc public class SDKSettings : ObjectiveC.NSObject {
-  public init(apiKey: Swift.String, baseURL: Swift.String? = nil, organisationLogoUrl: Swift.String? = nil)
-  @objc override dynamic public init()
-  @objc deinit
 }
 public protocol SDKServices {
   func configure(settings: AzupaySdk.SDKSettings)
