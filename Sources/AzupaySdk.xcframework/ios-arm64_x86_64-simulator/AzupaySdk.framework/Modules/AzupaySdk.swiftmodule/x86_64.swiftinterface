@@ -25,16 +25,16 @@ public struct Pay : Swift.Codable {
 @_hasMissingDesignatedInitializers final public class SDKServicesImpl : AzupaySdk.SDKServices {
   final public func clear()
   final public func configure(settings: AzupaySdk.SDKSettings)
-  final public func authenticate(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  final public func registerAccount(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  final public func forgotPin(phoneNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  final public func setPin(phoneNr: Swift.String, pin: Swift.String, code: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  final public func confirmAccount(phoneNr: Swift.String, validationCode: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  final public func paymentRequest(paymentRequest: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
-  final public func pay(paymentRequestId: Swift.String, pan: Swift.String, expiryDate: Swift.String, pin: Swift.String, amount: Swift.Double, accountType: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
-  final public func registerPayId(payID: Swift.String, type: AzupaySdk.PayIdType, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
-  final public func registerBankAccount(bsb: Swift.String, accountNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
-  final public func registerAccountUsingSDK(on viewController: UIKit.UIViewController, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Registration?) -> Swift.Void)
+  final public func authenticate(phoneNr: Swift.String, pin: Swift.String, deviceId: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  final public func registerAccount(phoneNr: Swift.String, pin: Swift.String, deviceId: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  final public func forgotPin(phoneNr: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  final public func setPin(phoneNr: Swift.String, pin: Swift.String, code: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  final public func confirmAccount(phoneNr: Swift.String, validationCode: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  final public func paymentRequest(paymentRequest: Swift.String, outcome: @escaping (AzupaySdk.Status, AzupaySdk.Payment?) -> Swift.Void)
+  final public func pay(paymentRequestId: Swift.String, pan: Swift.String, expiryDate: Swift.String, pin: Swift.String, amount: Swift.Double, accountType: Swift.String, outcome: @escaping (AzupaySdk.Status, AzupaySdk.Payment?) -> Swift.Void)
+  final public func registerPayId(payID: Swift.String, type: AzupaySdk.PayIdType, outcome: @escaping (AzupaySdk.Status, AzupaySdk.PayID?) -> Swift.Void)
+  final public func registerBankAccount(bsb: Swift.String, accountNr: Swift.String, outcome: @escaping (AzupaySdk.Status, AzupaySdk.PayID?) -> Swift.Void)
+  final public func registerAccountUsingSDK(on viewController: UIKit.UIViewController, outcome: @escaping (AzupaySdk.Status, AzupaySdk.Registration?) -> Swift.Void)
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @IBDesignable open class Checkbox : UIKit.UIControl {
@@ -65,8 +65,6 @@ public struct Pay : Swift.Codable {
   @objc @IBInspectable public var uncheckedBorderColor: UIKit.UIColor!
   @objc @IBInspectable public var checkedBorderColor: UIKit.UIColor!
   @objc @IBInspectable public var checkmarkColor: UIKit.UIColor!
-  @available(swift, obsoleted: 4.1, renamed: "checkboxFillColor", message: "Defaults to a clear color")
-  public var checkboxBackgroundColor: UIKit.UIColor!
   @objc @IBInspectable public var checkboxFillColor: UIKit.UIColor
   @objc @IBInspectable public var borderCornerRadius: CoreGraphics.CGFloat
   @objc @IBInspectable public var increasedTouchRadius: CoreGraphics.CGFloat
@@ -84,12 +82,11 @@ public struct Pay : Swift.Codable {
 }
 public struct Payment : Swift.Codable {
   public let paymentRequestStatus: AzupaySdk.PaymentRequestStatus?
-  public let paymentRequest: AzupaySdk.PaymentRequestClass?
-  public var status: AzupaySdk.Status
+  public let paymentRequest: AzupaySdk.PaymentRequest?
   public func encode(to encoder: Swift.Encoder) throws
   public init(from decoder: Swift.Decoder) throws
 }
-public struct PaymentRequestClass : Swift.Codable {
+public struct PaymentRequest : Swift.Codable {
   public let lineItems: [AzupaySdk.LineItem]?
   public let clientID: Swift.String?, payerNotificationMobile: Swift.String?, payerNotificationEmail: Swift.String?, clientTransactionID: Swift.String?
   public let payID: Swift.String?
@@ -109,23 +106,6 @@ public struct PaymentRequestStatus : Swift.Codable {
   public let status: Swift.String?
   public func encode(to encoder: Swift.Encoder) throws
   public init(from decoder: Swift.Decoder) throws
-}
-public enum Status {
-  case success
-  case fail
-  case parseFail
-  case noInternet
-  case notAuthenticated
-  case notFound
-  case noData
-  case inputRequired
-  case invalidParameter
-  case firstTime
-  case accountExist
-  case unauthorized
-  case paymentFail
-  case error(Swift.String?)
-  case none
 }
 public struct PayID : Swift.Codable {
   public func encode(to encoder: Swift.Encoder) throws
@@ -221,7 +201,7 @@ public class SdkBuilder {
   public func build() -> AzupaySdk.SDKSettings
   @objc deinit
 }
-public enum SDKServiceOutcome : Swift.String {
+public enum Status {
   case none
   case success
   case fail
@@ -229,20 +209,23 @@ public enum SDKServiceOutcome : Swift.String {
   case unauthorized
   case noInternetConnection
   case accountExist
+  case accountNotFound
   case invalidPhoneNumber
   case invalidPin
+  case invalidDeviceId
   case reenterPin
   case invalidCode
   case invalidPayID
+  case invalidParameter
   case userCancelled
   case notImplemented
   case invalidBSB
   case invalidBankAccountNumber
   case parseFail
+  case paymentFail
   case sdkNotInitialised
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
+  case error(_: Swift.String?)
+  public var description: Swift.String {
     get
   }
 }
@@ -259,16 +242,16 @@ public enum PayIdType {
 public protocol SDKServices {
   func configure(settings: AzupaySdk.SDKSettings)
   func clear()
-  func authenticate(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  func registerAccount(phoneNr: Swift.String, pin: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  func confirmAccount(phoneNr: Swift.String, validationCode: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  func forgotPin(phoneNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  func setPin(phoneNr: Swift.String, pin: Swift.String, code: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome) -> Swift.Void)
-  func registerPayId(payID: Swift.String, type: AzupaySdk.PayIdType, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
-  func registerBankAccount(bsb: Swift.String, accountNr: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.PayID?) -> Swift.Void)
-  func paymentRequest(paymentRequest: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
-  func pay(paymentRequestId: Swift.String, pan: Swift.String, expiryDate: Swift.String, pin: Swift.String, amount: Swift.Double, accountType: Swift.String, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Payment?) -> Swift.Void)
-  func registerAccountUsingSDK(on viewController: UIKit.UIViewController, outcome: @escaping (AzupaySdk.SDKServiceOutcome, AzupaySdk.Registration?) -> Swift.Void)
+  func authenticate(phoneNr: Swift.String, pin: Swift.String, deviceId: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  func registerAccount(phoneNr: Swift.String, pin: Swift.String, deviceId: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  func confirmAccount(phoneNr: Swift.String, validationCode: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  func forgotPin(phoneNr: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  func setPin(phoneNr: Swift.String, pin: Swift.String, code: Swift.String, outcome: @escaping (AzupaySdk.Status) -> Swift.Void)
+  func registerPayId(payID: Swift.String, type: AzupaySdk.PayIdType, outcome: @escaping (AzupaySdk.Status, AzupaySdk.PayID?) -> Swift.Void)
+  func registerBankAccount(bsb: Swift.String, accountNr: Swift.String, outcome: @escaping (AzupaySdk.Status, AzupaySdk.PayID?) -> Swift.Void)
+  func paymentRequest(paymentRequest: Swift.String, outcome: @escaping (AzupaySdk.Status, AzupaySdk.Payment?) -> Swift.Void)
+  func pay(paymentRequestId: Swift.String, pan: Swift.String, expiryDate: Swift.String, pin: Swift.String, amount: Swift.Double, accountType: Swift.String, outcome: @escaping (AzupaySdk.Status, AzupaySdk.Payment?) -> Swift.Void)
+  func registerAccountUsingSDK(on viewController: UIKit.UIViewController, outcome: @escaping (AzupaySdk.Status, AzupaySdk.Registration?) -> Swift.Void)
 }
 @_hasMissingDesignatedInitializers final public class AzupaySDK {
   public static let instance: AzupaySdk.SDKServicesImpl
@@ -290,8 +273,5 @@ extension AzupaySdk.SVPinViewStyle : Swift.RawRepresentable {}
 extension AzupaySdk.SVPinViewDeleteButtonAction : Swift.Equatable {}
 extension AzupaySdk.SVPinViewDeleteButtonAction : Swift.Hashable {}
 extension AzupaySdk.SVPinViewDeleteButtonAction : Swift.RawRepresentable {}
-extension AzupaySdk.SDKServiceOutcome : Swift.Equatable {}
-extension AzupaySdk.SDKServiceOutcome : Swift.Hashable {}
-extension AzupaySdk.SDKServiceOutcome : Swift.RawRepresentable {}
 extension AzupaySdk.PayIdType : Swift.Equatable {}
 extension AzupaySdk.PayIdType : Swift.Hashable {}
